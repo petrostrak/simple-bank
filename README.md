@@ -39,3 +39,9 @@ To initialize sqlc
 ```
 sqlc init
 ```
+
+To generate Go-code from sql
+
+```
+sqlc generate
+```
