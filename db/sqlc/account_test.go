@@ -4,14 +4,15 @@ import (
 	"context"
 	"testing"
 
+	"github.com/petrostrak/simple-bank/util"
 	"github.com/stretchr/testify/require"
 )
 
-func TestCreateAccou(t *testing.T) {
+func TestCreateAccount(t *testing.T) {
 	arg := CreateAccountParams{
-		Owner:    "pit",
-		Balance:  100,
-		Currency: "USD",
+		Owner:    util.RandomOwner(),
+		Balance:  util.RandomMoney(),
+		Currency: util.RandomCurrency(),
 	}
 
 	account, err := testQueries.CreateAccount(context.Background(), arg)
