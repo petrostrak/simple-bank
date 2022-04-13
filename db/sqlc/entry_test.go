@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func createrandomEntry(t *testing.T, account Account) Entry {
+func createRandomEntry(t *testing.T, account Account) Entry {
 	arg := CreateEntryParams{
 		AccountID: account.ID,
 		Amount:    util.RandomMoney(),
@@ -25,4 +25,9 @@ func createrandomEntry(t *testing.T, account Account) Entry {
 	require.NotZero(t, entry.CreatedAt)
 
 	return entry
+}
+
+func TestCreateEntry(t *testing.T) {
+	account := createRandomAccount(t)
+	createRandomEntry(t, account)
 }
