@@ -21,7 +21,7 @@ type AddAccountBalalnceParams struct {
 	ID     int64 `json:"id"`
 }
 
-func (q *Queries) AddAccountBalalnce(ctx context.Context, arg AddAccountBalalnceParams) (Account, error) {
+func (q *Queries) AddAccountBalance(ctx context.Context, arg AddAccountBalalnceParams) (Account, error) {
 	row := q.db.QueryRowContext(ctx, addAccountBalalnce, arg.Amount, arg.ID)
 	var i Account
 	err := row.Scan(
