@@ -11,6 +11,7 @@ type Server struct {
 	router *gin.Engine
 }
 
+// NewServer creates a new HTTP server and setup routing.
 func NewServer(s *db.Store) *Server {
 	server := &Server{store: s}
 	router := gin.Default()
@@ -19,6 +20,11 @@ func NewServer(s *db.Store) *Server {
 
 	server.router = router
 	return server
+}
+
+// Start runs the HTTP server on a specific address.
+func (s *Server) Start(addr string) error {
+	return s.router.Run(addr)
 }
 
 func errorResponse(err error) gin.H {
