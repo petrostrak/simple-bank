@@ -45,3 +45,40 @@ To generate Go-code from sql
 ```
 sqlc generate
 ```
+
+#### Viper
+Viper is a complete configuration solution for Go applications including 12-Factor apps. It is designed to work within an application, and can handle all types of configuration needs and formats.
+
+To instal viper
+
+```
+go get github.com/spf13/viper
+```
+
+It supports:
+
+* setting defaults
+* reading from JSON, TOML, YAML, HCL, envfile and Java properties config files
+* live watching and re-reading of config files (optional)
+* reading from environment variables
+* reading from remote config systems (etcd or Consul), and watching changes
+* reading from command line flags
+* reading from buffer
+* setting explicit values
+
+#### Gomock
+gomock is a mocking framework for the Go programming language.
+
+To instal gomock
+
+```
+go get github.com/spf13/viper
+```
+
+To generate code
+* first we choose the destination path 
+* then, the path that the interface exists
+specifying the name
+```
+mockgen -destination db/mock/store.go github.com/petrostrak/simple-bank/db/sqlc Store
+```
