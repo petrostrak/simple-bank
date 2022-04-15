@@ -108,7 +108,7 @@ func (s *Store) TransferTx(ctx context.Context, arg TransferTxParams) (TransferT
 }
 
 func addMoney(ctx context.Context, q *Queries, accountID1, amount1, accountID2, amount2 int64) (account1, account2 Account, err error) {
-	account1, err = q.AddAccountBalance(ctx, AddAccountBalalnceParams{
+	account1, err = q.AddAccountBalance(ctx, AddAccountBalanceParams{
 		ID:     accountID1,
 		Amount: amount1,
 	})
@@ -116,7 +116,7 @@ func addMoney(ctx context.Context, q *Queries, accountID1, amount1, accountID2, 
 		return
 	}
 
-	account2, err = q.AddAccountBalance(ctx, AddAccountBalalnceParams{
+	account2, err = q.AddAccountBalance(ctx, AddAccountBalanceParams{
 		ID:     accountID2,
 		Amount: amount2,
 	})
