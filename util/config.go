@@ -13,7 +13,7 @@ type Config struct {
 
 func LoadConfig(path string) (config Config, err error) {
 	viper.AddConfigPath(path)
-	viper.SetConfigFile("app")
+	viper.SetConfigName("app")
 	viper.SetConfigType("env") // you can use json, xml etc if you want instead of env
 
 	viper.AutomaticEnv()
