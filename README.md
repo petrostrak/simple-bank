@@ -80,7 +80,7 @@ To generate code
 * then, the path that the interface exists
 specifying the name
 ```
-mockgen -destination db/mock/store.go github.com/petrostrak/simple-bank/db/sqlc Store
+mockgen -package mockdb  -destination db/mock/store.go github.com/petrostrak/simple-bank/db/sqlc Store
 ```
 
 ###### NOTE: Due to recent changes in Go tooling, to make mockgen work, include an empty import of that package so it gets pulled. `import _ "github.com/golang/mock/mockgen/model"`
