@@ -58,6 +58,21 @@ func TestGetAccountAPI(t *testing.T) {
 				require.Equal(t, http.StatusNotFound, rr.Code)
 			},
 		},
+		{
+			name:      "InternalError",
+			accountID: account.ID,
+			buildStub: func(ms *mockdb.MockStore) {
+				// build stubs
+				ms.EXPECT().
+					GetAccount(gomock.Any(), gomock.Eq(account.ID)).
+					Times(1).
+					Return(db.Account{}, sql.ErrConnDone)
+			},
+			checkResponse: func(t *testing.T, rr *httptest.ResponseRecorder) {
+				// check response
+				require.Equal(t, http.StatusInternalServerError, rr.Code)
+			},
+		},
 	}
 
 	for i := range testCases {
