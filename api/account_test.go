@@ -73,6 +73,20 @@ func TestGetAccountAPI(t *testing.T) {
 				require.Equal(t, http.StatusInternalServerError, rr.Code)
 			},
 		},
+		{
+			name:      "InvalidID",
+			accountID: 0,
+			buildStub: func(ms *mockdb.MockStore) {
+				// build stubs
+				ms.EXPECT().
+					GetAccount(gomock.Any(), gomock.Any()).
+					Times(0)
+			},
+			checkResponse: func(t *testing.T, rr *httptest.ResponseRecorder) {
+				// check response
+				require.Equal(t, http.StatusBadRequest, rr.Code)
+			},
+		},
 	}
 
 	for i := range testCases {
@@ -89,7 +103,7 @@ func TestGetAccountAPI(t *testing.T) {
 			server := NewServer(store)
 			recorder := httptest.NewRecorder()
 
-			url := fmt.Sprintf("/accounts/%d", account.ID)
+			url := fmt.Sprintf("/accounts/%d", tc.accountID)
 			request, err := http.NewRequest(http.MethodGet, url, nil)
 			require.NoError(t, err)
 
