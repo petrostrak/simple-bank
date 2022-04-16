@@ -42,6 +42,7 @@ func TestGetAccountAPI(t *testing.T) {
 
 	// check response
 	require.Equal(t, http.StatusOK, recorder.Code)
+	requireBodyMatchAccount(t, recorder.Body, account)
 }
 
 func randomAccount() db.Account {
