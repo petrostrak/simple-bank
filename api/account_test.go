@@ -2,6 +2,7 @@ package api
 
 import (
 	"bytes"
+	"database/sql"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -41,7 +42,21 @@ func TestGetAccountAPI(t *testing.T) {
 				requireBodyMatchAccount(t, rr.Body, account)
 
 			},
-			// TODO: add more cases
+		},
+		{
+			name:      "NotFound",
+			accountID: account.ID,
+			buildStub: func(ms *mockdb.MockStore) {
+				// build stubs
+				ms.EXPECT().
+					GetAccount(gomock.Any(), gomock.Eq(account.ID)).
+					Times(1).
+					Return(db.Account{}, sql.ErrNoRows)
+			},
+			checkResponse: func(t *testing.T, rr *httptest.ResponseRecorder) {
+				// check response
+				require.Equal(t, http.StatusNotFound, rr.Code)
+			},
 		},
 	}
 
