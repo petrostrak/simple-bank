@@ -21,6 +21,10 @@ type Server struct {
 
 // NewServer creates a new HTTP server and setup routing.
 func NewServer(config util.Config, s db.Store) (*Server, error) {
+
+	// Since NewPasetoMaker and NewJWTMaker both implement the Maker
+	// interface, to switch to JWT authentication, it is as simple as
+	// just to call token.NewJWTMaker function instead.
 	tokenMaker, err := token.NewPasetoMaker(config.TokenSymmetricKey)
 	if err != nil {
 		return nil, fmt.Errorf("cannot create token maker: %w", err)
