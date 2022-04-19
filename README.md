@@ -23,7 +23,7 @@ migrate -path db/migration -database "postgresql://postgres:secret@localhost:543
 ```
 
 #### SQLC
-SQLC generates Go-code from the SQL.
+[SQLC](https://docs.sqlc.dev/en/stable/) generates Go-code from the SQL.
 * You write SQL queries
 * You run sqlc to generate code that presents type-safe interfaces to those queries
 * You write application code that calls the methods sqlc generated.
@@ -47,7 +47,7 @@ sqlc generate
 ```
 
 #### Viper
-Viper is a complete configuration solution for Go applications including 12-Factor apps. It is designed to work within an application, and can handle all types of configuration needs and formats.
+[Viper](https://github.com/spf13/viper) is a complete configuration solution for Go applications including 12-Factor apps. It is designed to work within an application, and can handle all types of configuration needs and formats.
 
 To instal viper
 
@@ -67,7 +67,7 @@ It supports:
 * setting explicit values
 
 #### Gomock
-gomock is a mocking framework for the Go programming language.
+[gomock](https://github.com/golang/mock) is a mocking framework for the Go programming language.
 
 To instal gomock
 
@@ -86,7 +86,7 @@ mockgen -package mockdb  -destination db/mock/store.go github.com/petrostrak/sim
 ###### NOTE: Due to recent changes in Go tooling, to make mockgen work, include an empty import of that package so it gets pulled. `import _ "github.com/golang/mock/mockgen/model"`
 
 #### PASETO: Platform-Agnostic Security Tokens
-PASETO (Platform-Agnostic SEcurity TOkens) is a specification and reference implementation for secure stateless tokens.
+[PASETO](https://github.com/aidantwoods/go-paseto) (Platform-Agnostic SEcurity TOkens) is a specification and reference implementation for secure stateless tokens.
 
 Unlike JSON Web Tokens (JWT), which gives developers more than enough rope with which to hang themselves, PASETO only allows secure operations. JWT gives you "algorithm agility", PASETO gives you "versioned protocols". It's incredibly unlikely that you'll be able to use PASETO in an [insecure way](https://auth0.com/blog/critical-vulnerabilities-in-json-web-token-libraries/).
 ###### Caution: Neither JWT nor PASETO were designed for stateless session management. PASETO is suitable for tamper-proof cookies, but cannot prevent replay attacks by itself.
